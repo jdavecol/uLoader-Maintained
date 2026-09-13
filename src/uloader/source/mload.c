@@ -22,6 +22,11 @@ static const char mload_fs[] ATTRIBUTE_ALIGN(32) = "/dev/mload";
 static s32 mload_fd = -1;
 static s32 hid = -1;
 
+static s32 iosDestroyHeap(s32 hid)
+{
+	return 0;
+}
+
 /*--------------------------------------------------------------------------------------------------------------*/
 
 // to init/test if the device is running
