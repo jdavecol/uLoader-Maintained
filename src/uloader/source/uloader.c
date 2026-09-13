@@ -381,7 +381,7 @@ int exit_by_reset=0;
 
 int return_reset=2;
 
-void reset_call() {exit_by_reset=return_reset;}
+void reset_call(u32 irq, void *ctx) {exit_by_reset=return_reset;}
 void power_call() {exit_by_reset=3;}
 
 

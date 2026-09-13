@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009 Francisco Muñoz 'Hermes' <www.elotrolado.net>
+Copyright (c) 2009 Francisco Muï¿½oz 'Hermes' <www.elotrolado.net>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are 
@@ -52,7 +52,7 @@ extern int num_partitions;
 
 extern int exit_by_reset;
 
-extern void reset_call();
+extern void reset_call(u32 irq, void *ctx);
 
 extern int idioma;
 
