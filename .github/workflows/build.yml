@@ -14,14 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Debug pacman location
-        run: |
-          echo "PATH=$PATH"
-          ls -la /opt/devkitpro 2>&1
-          find / -name 'dkp-pacman' -o -name 'pacman' 2>/dev/null | head -20
-
       - name: Install dependencies
-        run: /opt/devkitpro/pacman/bin/dkp-pacman -Syy --noconfirm ppc-zlib
+        run: dkp-pacman -Syy --noconfirm ppc-zlib
 
       - name: Build uLoader (devkitPPC)
         run: |
