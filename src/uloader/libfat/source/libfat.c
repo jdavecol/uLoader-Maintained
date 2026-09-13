@@ -38,6 +38,23 @@
 #include "mem_allocate.h"
 #include "disc.h"
 
+#ifndef MAXPATHLEN
+#define MAXPATHLEN 1024
+#endif
+
+/*
+ Modern devkitPro newlib declares ftruncate_r/fsync_r in devoptab_t with a
+ void* file descriptor, while libFAT (and this tree) use plain int fds.
+ Adapt with thin shims.
+*/
+static int _FAT_ftruncate_r_compat (struct _reent *r, void *fd, off_t len) {
+	return _FAT_ftruncate_r (r, (int)(ptrdiff_t) fd, len);
+}
+
+static int _FAT_fsync_r_compat (struct _reent *r, void *fd) {
+	return _FAT_fsync_r (r, (int)(ptrdiff_t) fd);
+}
+
 static const devoptab_t dotab_fat = {
 	"fat",
 	sizeof (FILE_STRUCT),
@@ -59,8 +76,8 @@ static const devoptab_t dotab_fat = {
 	_FAT_dirnext_r,
 	_FAT_dirclose_r,
 	_FAT_statvfs_r,
-	_FAT_ftruncate_r,
-	_FAT_fsync_r,
+	_FAT_ftruncate_r_compat,
+	_FAT_fsync_r_compat,
 	NULL	/* Device data */
 };
 

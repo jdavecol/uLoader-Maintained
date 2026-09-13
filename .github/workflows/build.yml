@@ -28,6 +28,7 @@ jobs:
           echo "== newlib dir wrappers in libc:"; "$nm" --defined-only /opt/devkitpro/devkitPPC/powerpc-eabi/lib/libc.a 2>/dev/null | grep -iE 'diropen|dirnext|dirclose' | head
           echo "== wii sys/dir.h:"; find /opt/devkitpro/devkitPPC -name 'dir.h' -path '*sys*' 2>/dev/null; find /opt/devkitpro/libogc -name 'dir.h' 2>/dev/null
           echo "== where app resolves sys/dir.h + DIR_ITER:"; printf '#include <sys/dir.h>\n#include <sys/iosupport.h>\nDIR_ITER *d;\ndevoptab_t *v;\n' > /tmp/diag.c; "$DEVKITPPC/bin/powerpc-eabi-gcc" -I/opt/devkitpro/libogc/include -H -E -x c /tmp/diag.c 2>&1 | grep -iE 'dir\.h|iosupport'
+          echo "== devoptab_t def:"; grep -rn 'typedef struct' /opt/devkitpro/libogc/include/sys/iosupport.h | head; sed -n '1,80p' /opt/devkitpro/libogc/include/sys/iosupport.h | grep -vE '^/#|^ \*' | head -70
 
       - name: Build libfat (Hermes)
         run: make -C src/uloader/libfat install 2>&1 | tail -30
