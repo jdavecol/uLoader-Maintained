@@ -1,6 +1,12 @@
 #ifndef _FILES_H_
 #define _FILES_H_
 
+#include <sys/dir.h>
+
+extern DIR_ITER *diropen(const char *path);
+extern int dirnext(DIR_ITER *dir, char *filename, struct stat *filestat);
+extern int dirclose(DIR_ITER *dir);
+
 extern char path_file[258];
 extern int nfiles;
 extern int ndirs;
