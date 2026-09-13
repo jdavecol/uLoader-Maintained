@@ -33,7 +33,7 @@ LDFLAGS	=	-g $(MACHDEP) -mrvl -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:=	-lfat -lasnd -lmodplay -laesnd -lscreen -lpng -lwiiuse -lbte  -logc -lm -lz #../../lib/libfat.a ../../tremor/libtremor.a
+LIBS	:=	../../lib/libfat.a -lasnd -lmodplay -laesnd -lscreen -lpng -lwiiuse -lbte  -logc -lm -lz #../../tremor/libtremor.a
 
 
 #---------------------------------------------------------------------------------
