@@ -5,7 +5,6 @@
 #include <math.h>
 #include <ogcsys.h>
 #include <gccore.h>
-#include "ogc/lwp_threads.h"
 #include <wiiuse/wpad.h>
 #include "fat.h"
 #include <fcntl.h>
