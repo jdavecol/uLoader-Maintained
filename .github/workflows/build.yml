@@ -26,6 +26,7 @@ jobs:
         run: |
           nm="$DEVKITPPC/bin/powerpc-eabi-nm"
           echo "== libfat dir symbols:"; "$nm" --defined-only src/uloader/lib/libfat.a 2>/dev/null | grep -iE 'dir(open|next|close)|mount| _FAT' | head -30
+          echo "== modern libfat dir symbols:"; "$nm" --defined-only /opt/devkitpro/libogc/lib/wii/libfat.a 2>/dev/null | grep -iE 'dir(open|next|close)|mount|fatInit|FatMount' | head -30
           echo "== crt0.o:"; "$nm" /opt/devkitpro/devkitPPC/powerpc-eabi/lib/crt0.o | grep -E '_start|T _' | head
           echo "== crtmain.o:"; "$nm" /opt/devkitpro/devkitPPC/powerpc-eabi/lib/crtmain.o | grep -E '_start|T _' | head
 
