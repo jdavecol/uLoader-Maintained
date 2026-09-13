@@ -1101,17 +1101,14 @@ void _FAT_directory_entryStat (PARTITION* partition, DIR_ENTRY* entry, struct st
 		0,
 		u8array_to_u16 (entry->entryData, DIR_ENTRY_aDate)
 	);
-	st->st_spare1 = 0;
 	st->st_mtime = _FAT_filetime_to_time_t (
 		u8array_to_u16 (entry->entryData, DIR_ENTRY_mTime),
 		u8array_to_u16 (entry->entryData, DIR_ENTRY_mDate)
 	);
-	st->st_spare2 = 0;
 	st->st_ctime = _FAT_filetime_to_time_t (
 		u8array_to_u16 (entry->entryData, DIR_ENTRY_cTime),
 		u8array_to_u16 (entry->entryData, DIR_ENTRY_cDate)
 	);
-	st->st_spare3 = 0;
 	st->st_blksize = BYTES_PER_READ;				// Prefered file I/O block size 
 	st->st_blocks = (st->st_size + BYTES_PER_READ - 1) / BYTES_PER_READ;	// File size in blocks
 	st->st_spare4[0] = 0;
