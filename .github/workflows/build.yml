@@ -25,6 +25,7 @@ jobs:
       - name: Inspect crt
         run: |
           nm="$DEVKITPPC/bin/powerpc-eabi-nm"
+          echo "== libfat dir symbols:"; "$nm" --defined-only src/uloader/lib/libfat.a 2>/dev/null | grep -iE 'dir(open|next|close)|mount| _FAT' | head -30
           echo "== crt0.o:"; "$nm" /opt/devkitpro/devkitPPC/powerpc-eabi/lib/crt0.o | grep -E '_start|T _' | head
           echo "== crtmain.o:"; "$nm" /opt/devkitpro/devkitPPC/powerpc-eabi/lib/crtmain.o | grep -E '_start|T _' | head
 
@@ -35,9 +36,8 @@ jobs:
 
       - name: Inspect linked output
         run: |
-          gcc="$DEVKITPPC/bin/powerpc-eabi-gcc"; nm="$DEVKITPPC/bin/powerpc-eabi-nm"
-          echo "== libfat dir symbols:"; "$nm" --defined-only src/uloader/lib/libfat.a 2>/dev/null | grep -iE 'dir(open|next|close)|mount' | head -20
           echo "== dol sizes:"; ls -la src/uloader/uloader.dol src/uloader/uloader_alt.dol
+          echo "== elf sizes:"; ls -la src/uloader/uloader/uloader.elf src/uloader/uloader_alt/uloader_alt.elf
 
       - name: Upload boot.dol artifacts
         uses: actions/upload-artifact@v4
