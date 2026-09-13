@@ -100,7 +100,7 @@ s32 USBStorage2_TestMode(u32 on_off)
 }
 
 
-inline s32 __USBStorage2_isMEM2Buffer(const void *buffer)
+static inline s32 __USBStorage2_isMEM2Buffer(const void *buffer)
 {
 	u32 high_addr = ((u32)buffer) >> 24;
 

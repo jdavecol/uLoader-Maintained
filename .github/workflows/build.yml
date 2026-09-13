@@ -36,11 +36,8 @@ jobs:
       - name: Inspect linked output
         run: |
           gcc="$DEVKITPPC/bin/powerpc-eabi-gcc"; nm="$DEVKITPPC/bin/powerpc-eabi-nm"
+          echo "== libfat dir symbols:"; "$nm" --defined-only src/uloader/lib/libfat.a 2>/dev/null | grep -iE 'dir(open|next|close)|mount' | head -20
           echo "== dol sizes:"; ls -la src/uloader/uloader.dol src/uloader/uloader_alt.dol
-          echo "== elf sizes:"; ls -la src/uloader/uloader/uloader.elf src/uloader/uloader_alt/uloader_alt.elf
-          echo "== elf _start/main symbols:"; "$nm" src/uloader/uloader/uloader.elf | grep -iE '[_](start|main)$|call_main|__crt' | head
-          echo "== reference link (rvl, no -T):"; printf 'int main(void){return 0;}\n' >/tmp/m.c; "$gcc" -mrvl -v -o /tmp/m.elf /tmp/m.c 2>&1 | grep -E 'crt0|crti|crtbegin|rvl.ld|T ' | head
-          echo "== reference size (no -T):"; ls -la /tmp/m.elf 2>/dev/null; "$nm" /tmp/m.elf | grep -E '[_](start|main)' | head
 
       - name: Upload boot.dol artifacts
         uses: actions/upload-artifact@v4
