@@ -28,7 +28,7 @@ INCLUDES	:=
 CFLAGS	= -DALTERNATIVE_VERSION -g -Os -mrvl -Wall $(MACHDEP) $(INCLUDE) $(DEBUG)
 CXXFLAGS	=	$(CFLAGS)
 
-LDFLAGS	=	-g $(MACHDEP) -mrvl -Wl,-Map,$(notdir $@).map -T../../rvl.ld
+LDFLAGS	=	-g $(MACHDEP) -mrvl -Wl,-Map,$(notdir $@).map
 
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
