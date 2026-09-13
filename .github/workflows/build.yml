@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitppc
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build uLoader (devkitPPC)
+        run: |
+          cd src/uloader
+          make
+
+      - name: Upload boot.dol artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: uloader-boot-dol
+          path: |
+            src/uloader/uloader.dol
+            src/uloader/uloader_alt.dol
+          if-no-files-found: error

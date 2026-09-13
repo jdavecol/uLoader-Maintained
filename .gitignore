@@ -1,0 +1,18 @@
+# Build artifacts
+build/
+*.o
+*.elf
+*.dol
+*.map
+*.d
+make.txt
+
+# Module build outputs
+src/uloader/fatffs-module/build/
+src/uloader/fatffs-module/bin/
+
+# Windows junk
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.DS_Store
