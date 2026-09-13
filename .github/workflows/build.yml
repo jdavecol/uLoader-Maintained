@@ -17,8 +17,11 @@ jobs:
       - name: Install dependencies
         run: dkp-pacman -Syy --noconfirm ppc-zlib
 
-      - name: Inspect wii_rules
-        run: cat "$DEVKITPPC/base_rules"; gcc="$DEVKITPPC/bin/powerpc-eabi-gcc"; echo "== crt0 in spec:"; "$gcc" -mrvl -print-file-name=crt0.o; echo "== gcc base:"; "$gcc" -print-file-name=libgcc.a; echo "== crt files:"; find /opt/devkitpro/devkitPPC -name 'crt*.o' 2>/dev/null | head -20; echo "== ldscripts in devkitppc:"; find /opt/devkitpro/devkitPPC /opt/devkitpro -name 'rvl.ld' -o -name '*.ld' 2>/dev/null | head -10; echo "== libogc wii libs:"; ls "$DEVKITPRO/libogc/lib/wii" 2>/dev/null | head -30
+      - name: Inspect crt
+        run: |
+          nm="$DEVKITPPC/bin/powerpc-eabi-nm"
+          echo "== crt0.o:"; "$nm" /opt/devkitpro/devkitPPC/powerpc-eabi/lib/crt0.o | grep -E '_start|T _' | head
+          echo "== crtmain.o:"; "$nm" /opt/devkitpro/devkitPPC/powerpc-eabi/lib/crtmain.o | grep -E '_start|T _' | head
 
       - name: Build uLoader (devkitPPC)
         run: |

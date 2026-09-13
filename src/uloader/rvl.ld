@@ -281,6 +281,9 @@ __ipcbufferHi = (0x93400000);
 /* for backward compatibility with old crt0 */
 PROVIDE (__stack = (0x816ffff0));
 
+/* new libogc (tuxedo) exception save area, as in libogc_common.ld */
+PROVIDE_HIDDEN (__ppc_excpt_buf = 0x800000d0);;
+
 PROVIDE(__isIPL = __isIPL);
 PROVIDE(__stack_addr = __stack_addr);
 PROVIDE(__stack_end = __stack_end);

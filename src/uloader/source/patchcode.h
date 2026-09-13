@@ -2,10 +2,10 @@
 #define __PATCHCODE_H__
 
 // Globals
-u32 hooktype;
-int patched;
-u8 configbytes[2];
-u32 regionfree;
+extern u32 hooktype;
+extern int patched;
+extern u8 configbytes[2];
+extern u32 regionfree;
 
 //---------------------------------------------------------------------------------
 extern const u32 viwiihooks[4];

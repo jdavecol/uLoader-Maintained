@@ -29,6 +29,11 @@
 
 #include "patchcode.h"
 
+u32 hooktype;
+int patched;
+u8 configbytes[2];
+u32 regionfree;
+
 
 //#include "sd.h"
 //#include "fwrite_patch.h"
