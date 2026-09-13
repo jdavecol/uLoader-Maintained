@@ -26,6 +26,8 @@
 #include <gccore.h>
 #include "unistd.h"
 
+extern s32 iosDestroyHeap(s32 hid);
+
 #define MLOAD_MLOAD_THREAD_ID	0x4D4C4400
 #define MLOAD_GET_IOS_BASE	    0x4D4C4401
 #define MLOAD_LOAD_MODULE		0x4D4C4480
