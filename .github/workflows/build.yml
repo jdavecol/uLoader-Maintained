@@ -17,6 +17,9 @@ jobs:
       - name: Install dependencies
         run: dkp-pacman -Syy --noconfirm ppc-zlib
 
+      - name: Inspect wii_rules
+        run: cat "$DEVKITPPC/wii_rules"; echo "== rvl libs:"; ls "$DEVKITPPC/lib" | head -30; echo "== spec files:"; ls "$DEVKITPPC/lib/gc/" 2>/dev/null; ls "$DEVKITPRO" | head
+
       - name: Build uLoader (devkitPPC)
         run: |
           cd src/uloader
